@@ -23,6 +23,10 @@ In diesem Projekt wird mit Quarkus und CDI gearbeitet. Hier werden Besipielsweis
 
 Nach kompilieren und durchlaufen der Tests kann mann den Service unter http://localhost:8080/contacts/{namelistType} erreichen.
 
+## Tests
+
+Alle implementierten Test laufen automatisch beim Start des Services durch. Sie sind außerdem in diesem Projekt unter **src/tests/java/contacts.com/** zu finden. 
+
 ## Probleme
 
 Die erste Reihe der Probleme bestand darin, dass in dem file **pom.xml** die Plugins 
@@ -36,4 +40,7 @@ sowie dessen zugehörige Version
 ```xml
 <version>${surefire-plugin.version}</version>
 ```
-nicht erkannt werden. Dies ist sehr wahrscheinlich ein weiterer Fehler in der Reihe von Fehlern, die ich beim Aufsetzen der VM (oder auch nicht) gemacht habe. Aber bisher hat sich mir keine Lösung ergeben.
+nicht erkannt werden. Dies ist sehr wahrscheinlich ein weiterer Fehler in der Reihe von Fehlern, die ich beim Aufsetzen der VM gemacht (oder auch nicht gemacht) habe. Aber bisher hat sich mir keine Lösung ergeben. 
+
+Weiters hatte ich Probleme zu verstehen, wie man eine qualifizierte Dependency-Injection implementiert bzw. wozu das in diesem Fall nützlich wäre (außer zu demonstrativen Zwecken). Deshalb habe ich die **SavableNamelist-Klasse**, genau so wie die erste **Namelist-Klasse** über simple Dependency-Injection zur Verfügung gestellt. Natürlich ist mir ein Punkteabzug in diesem Sinne klar, aber würde trotzdem gerne wissen wie ich dies richtig umsetzen hätte können.
+
