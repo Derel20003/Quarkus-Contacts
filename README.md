@@ -1,6 +1,6 @@
 # Übung 1 - Dokumentation (Quarkus-Contacts)
 
-In diesem Projekt wird mit Quarkus und CDI gearbeitet. Hier werden Besipielsweise zwei Namenslisten-Services zur verfügung gestellt.
+In diesem Projekt wird mit Quarkus und CDI gearbeitet. Hier werden Besipielsweise zwei Namenslisten-Services zur verfügung gestellt, in denen man Namen zu einer Liste hinzufügen, sie ändern oder löschen kann. Einer der beiden Service speichert diese Liste in ein File ab.
 
 ## Lösungsweg
 
