@@ -22,8 +22,8 @@ In diesem Projekt wird mit Quarkus und CDI gearbeitet. Hier werden Besipielsweis
 >   Hauptmethode beider Klassen. Hier bestimmt der Parameter "atcion" ob ein Name der Liste hinzugefügt, verändert oder gelöscht wird. Wichtiger (und einziger) Unterschied zur "Namelist" Klasse ist das statt In-Memory Liste ein gespeichertes File verwendet wird.
 
 Nach kompilieren und durchlaufen der Tests kann mann den Service unter http://localhost:8080/contacts/{namelistType}/{action} erreichen. Dabei gibt es zwei Parameter (einer abhängig der Aktion), nämlich *name* und *newName*. 
-* Folge Aktionen sind möglich: *add/modify/delete*. 
-* Folgende namelistTypes sind möglich: *namelist/savableNamelist*
+* Folge **action(s)** sind möglich: *add/modify/delete*. 
+* Folgende **namelistType(s)** sind möglich: *namelist/savableNamelist*
 
 ## Tests
 
