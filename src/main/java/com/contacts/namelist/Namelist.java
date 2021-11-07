@@ -1,34 +1,54 @@
 package com.contacts.namelist;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
+import java.util.LinkedList;
 
 @ApplicationScoped
 public class Namelist {
 
-    public String add(String name){
-        return name + "22";
-    }
+    private final LinkedList<String> nameList = new LinkedList<>();
 
-    @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    @Path("/add")
-    public String hello() {
-        return "Hello RESTEasy1";
-    }
-
-    @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    @Path("/modify/{name}")
-    public String greeting(@PathParam("name") String name) {
-        return name;
-    }
-
-    @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    @Path("/delete")
-    public String hello5() {
-        return "Hello RESTEasy3";
+    public String tryAction(String action, String name, String newName){
+        String returnMessage = "Something went wrong. Try again!";
+        switch (action){
+            case "add":
+                if (name != null){
+                    nameList.add(name);
+                    returnMessage = "Added '" + name + "' into namelist.";
+                } else {
+                    returnMessage = "Cannot add non-existing name 'null'.";
+                }
+                break;
+            case "delete":
+                if (name != null && nameList.contains(name)){
+                    nameList.remove(name);
+                    returnMessage = "Deleted '" + name + "' from namelist.";
+                } else {
+                    returnMessage = "Cannot remove " + (name != null ?
+                            ("name '" + name + "' that is not present in namelist.") : "non-existing name.");
+                }
+                break;
+            case "modify":
+                if (name != null && nameList.contains(name) && newName != null){
+                    int index = nameList.indexOf(name);
+                    nameList.remove(name);
+                    nameList.add(index, newName);
+                    returnMessage = "Modified name '" + name + "' to '" + newName + "'.";
+                } else {
+                    if (newName != null){
+                        returnMessage = "Cannot modify " + (name != null ?
+                                ("name '" + name + "' that is not present in namelist.") : "non-existing name.");
+                    } else {
+                        returnMessage = "Cannot modify to non-value name.";
+                    }
+                }
+                break;
+            case "getList":
+                returnMessage = nameList.toString();
+                break;
+            default:
+                returnMessage = "Action '" + action + "' not found. Please try add/modify/delete.";
+        }
+        return returnMessage;
     }
 }

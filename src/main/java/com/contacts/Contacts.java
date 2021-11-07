@@ -1,6 +1,7 @@
 package com.contacts;
 
 import com.contacts.namelist.Namelist;
+import com.contacts.saveablenamelist.SavableNamelist;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -10,27 +11,25 @@ import javax.ws.rs.core.MediaType;
 public class Contacts {
 
     @Inject
-    private Namelist namelist;
+    Namelist namelist;
+    @Inject
+    SavableNamelist savableNamelist;
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    @Path("/add/{name}")
-    public String addName(@PathParam("name") String someValue,
-                          @QueryParam("language") String language) {
-        return someValue + namelist.add(language);
+    @Path("/namelist/{action}")
+    public String namelist(@PathParam("action") String action,
+                           @QueryParam("name") String name,
+                           @QueryParam("newName") String newName) {
+        return namelist.tryAction(action, name, newName);
     }
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    @Path("/modify/{name}")
-    public String greeting(@PathParam("name") String name) {
-        return name;
-    }
-
-    @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    @Path("/delete")
-    public String hello5() {
-        return "Hello RESTEasy3";
+    @Path("/savableNamelist/{action}")
+    public String savableNamelist(@PathParam("action") String action,
+                           @QueryParam("name") String name,
+                           @QueryParam("newName") String newName) {
+        return savableNamelist.tryAction(action, name, newName);
     }
 }
